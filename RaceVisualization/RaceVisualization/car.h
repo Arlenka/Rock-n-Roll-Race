@@ -1,4 +1,5 @@
-﻿#include "coord.h"
+﻿#pragma once 
+#include "coord.h"
 
 class Car
 {

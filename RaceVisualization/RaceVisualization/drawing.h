@@ -1,5 +1,7 @@
-﻿#include <vector>
+﻿#pragma once
+#include <vector>
 #include "map.h"
+#include "car.h"
 
 class Drawing
 {
