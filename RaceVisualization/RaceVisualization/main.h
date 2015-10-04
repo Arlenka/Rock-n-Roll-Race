@@ -14,8 +14,9 @@ const int DEFAULT_STEPS_PER_CELL = 20;
 
 class Visualization
 {
+public:
 	// Visualization(); // конструктор с выбором входного файла через оконный интерфейс
-	Visualization(std::string input_file); // конструктор с указанным входным файлом
+	Visualization( std::string input_file ); // конструктор с указанным входным файлом
 	// ~Visualization();
 
 	void Run(); // запуск гонки
@@ -37,7 +38,7 @@ private:
 	int cell_size;
 	int steps_number_per_cell;
 
-	void read_map(std::ifstream & input);
-	void read_car(std::ifstream & input);
+	void read_map( std::ifstream & input );
+	void read_car( std::ifstream & input );
 
 };

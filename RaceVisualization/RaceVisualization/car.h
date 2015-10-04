@@ -3,6 +3,7 @@
 
 class Car
 {
+public:
 	Car(std::vector<Coord> coords_data);
 	WCoord move();
 
