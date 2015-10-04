@@ -6,6 +6,11 @@
 #include "coord.h"
 
 
+const int DEFAULT_WINDOW_WIDTH = 500;
+const int DEFAULT_WINDOW_HEIGHT = 500;
+const int DEFAULT_STEPS_PER_CELL = 20;
+
+
 class Visualization
 {
 	// Visualization(); // конструктор с выбором входного файла через оконный интерфейс
@@ -21,7 +26,6 @@ class Visualization
 	int get_steps_number_per_cell();
 
 private:
-	std::vector<std::vector<int>> map;
 	Drawing drawing_module;
 	std::vector<Car> cars;
 	int current_step;
