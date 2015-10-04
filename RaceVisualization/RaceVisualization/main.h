@@ -1,4 +1,4 @@
-#include <string>
+п»ї#include <string>
 #include <vector>
 #include <fstream>
 #include "drawing.h"
@@ -13,12 +13,12 @@ const int DEFAULT_STEPS_PER_CELL = 20;
 
 class Visualization
 {
-	// Visualization(); // конструктор с выбором входного файла через оконный интерфейс
-	Visualization(std::string input_file); // конструктор с указанным входным файлом
+	// Visualization(); // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РІС‹Р±РѕСЂРѕРј РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° С‡РµСЂРµР· РѕРєРѕРЅРЅС‹Р№ РёРЅС‚РµСЂС„РµР№СЃ
+	Visualization(std::string input_file); // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РІС…РѕРґРЅС‹Рј С„Р°Р№Р»РѕРј
 	// ~Visualization();
 
-	void Run(); // запуск гонки
-	// void Stop(); // преждевременная остановка
+	void Run(); // Р·Р°РїСѓСЃРє РіРѕРЅРєРё
+	// void Stop(); // РїСЂРµР¶РґРµРІСЂРµРјРµРЅРЅР°СЏ РѕСЃС‚Р°РЅРѕРІРєР°
 
 	int get_screen_width();
 	int get_screen_height();

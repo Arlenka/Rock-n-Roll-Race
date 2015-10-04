@@ -1,4 +1,4 @@
-#include <glut.h>
+п»ї#include <glut.h>
 #include <fstream>
 #include <vector>
 
@@ -11,7 +11,7 @@ public:
 		std::ifstream fin("input.txt");
 		fin >> n >> m;
 		data.resize(n);
-		for (int i = n - 1; i >= 0; i--) { 	// считывание такое, т.к. начало координат в openGL слева снизу, проще массив перевернуть
+		for (int i = n - 1; i >= 0; i--) { 	// СЃС‡РёС‚С‹РІР°РЅРёРµ С‚Р°РєРѕРµ, С‚.Рє. РЅР°С‡Р°Р»Рѕ РєРѕРѕСЂРґРёРЅР°С‚ РІ openGL СЃР»РµРІР° СЃРЅРёР·Сѓ, РїСЂРѕС‰Рµ РјР°СЃСЃРёРІ РїРµСЂРµРІРµСЂРЅСѓС‚СЊ
 			data[i].resize(m);
 			for (int j = 0; j < m; j++) {
 				fin >> data[i][j];
@@ -31,8 +31,8 @@ private:
 	std::vector< std::vector <int > > data;
 };
 
-static Map myMap; // быдлокод... в идеале, у Map надо создать функцию Draw,	
-				  // но не понимаю, как ее передать в glutDisplayFunc, который требует строго void (*)()
+static Map myMap; // Р±С‹РґР»РѕРєРѕРґ... РІ РёРґРµР°Р»Рµ, Сѓ Map РЅР°РґРѕ СЃРѕР·РґР°С‚СЊ С„СѓРЅРєС†РёСЋ Draw,	
+				  // РЅРѕ РЅРµ РїРѕРЅРёРјР°СЋ, РєР°Рє РµРµ РїРµСЂРµРґР°С‚СЊ РІ glutDisplayFunc, РєРѕС‚РѕСЂС‹Р№ С‚СЂРµР±СѓРµС‚ СЃС‚СЂРѕРіРѕ void (*)()
 
 void display()
 {

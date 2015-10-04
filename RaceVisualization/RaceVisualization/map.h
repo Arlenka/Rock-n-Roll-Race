@@ -1,4 +1,4 @@
-#include <vector>
+п»ї#include <vector>
 
 class Map
 {
@@ -6,5 +6,5 @@ class Map
 	OpenGLObject get_map();
 
 private:
-	std::vector<std::vector<int>> map; // TODO может тут хранить не в виде 2мерного массива?
+	std::vector<std::vector<int>> map; // TODO РјРѕР¶РµС‚ С‚СѓС‚ С…СЂР°РЅРёС‚СЊ РЅРµ РІ РІРёРґРµ 2РјРµСЂРЅРѕРіРѕ РјР°СЃСЃРёРІР°?
 };
