@@ -7,7 +7,6 @@
 #include "coord.h"
 #include "map.h"
 
-
 const int DEFAULT_WINDOW_WIDTH = 500;
 const int DEFAULT_WINDOW_HEIGHT = 500;
 const int DEFAULT_STEPS_PER_CELL = 20;

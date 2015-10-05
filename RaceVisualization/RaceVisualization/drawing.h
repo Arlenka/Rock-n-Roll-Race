@@ -17,4 +17,6 @@ private:
 	static void reshape( int width, int height );
 	static Map map;
 	static std::vector<Car> cars;
+	static void Timer( int value );
+//	static Parameters parameteres;
 };

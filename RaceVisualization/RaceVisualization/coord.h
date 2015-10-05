@@ -8,6 +8,8 @@ struct Coord {
 
 // координаты в окне
 struct WCoord {
-	int x;
-	int y;
+	float x;
+	float y;
+	WCoord( float _x, float _y ): x(_x), y(_y) {}
+	WCoord() {}
 };
