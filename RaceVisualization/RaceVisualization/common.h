@@ -5,6 +5,7 @@
 #include "drawing.h"
 #include "car.h"
 #include "coord.h"
+#include "map.h"
 
 
 const int DEFAULT_WINDOW_WIDTH = 500;
@@ -12,11 +13,11 @@ const int DEFAULT_WINDOW_HEIGHT = 500;
 const int DEFAULT_STEPS_PER_CELL = 20;
 
 
-class Visualization
+class Visualisation
 {
 public:
-	// Visualization(); // конструктор с выбором входного файла через оконный интерфейс
-	Visualization( std::string input_file ); // конструктор с указанным входным файлом
+	Visualisation() {} // конструктор с выбором входного файла через оконный интерфейс
+	Visualisation( std::string input_file ); // конструктор с указанным входным файлом
 	// ~Visualization();
 
 	void Run(); // запуск гонки
@@ -28,7 +29,12 @@ private:
 	int current_step;
 	int step_number;
 
-	void read_map( std::ifstream & input );
-	void read_car( std::ifstream & input );
+	int screen_width;
+	int screen_height;
+	int cell_size;
+	int steps_number_per_cell;
+
+	std::vector<std::vector<int>> read_map(std::ifstream & input);
+	void read_cars(std::ifstream & input);
 
 };

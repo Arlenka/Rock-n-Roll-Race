@@ -1,8 +1,10 @@
 #pragma once
+
+#include "coord.h"
 class Parameters
 {
 public:
-	Parameters();
+	Parameters() {};
 
 	int get_screen_width();
 	int get_screen_height();

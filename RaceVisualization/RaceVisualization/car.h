@@ -6,7 +6,12 @@
 class Car
 {
 public:
+
 	Car(std::vector<Coord> coords_data, Parameters param);
+	Car(std::vector<Coord> coords_data) {
+		coords = coords_data;
+	}
+
 	WCoord move();
 
 private:

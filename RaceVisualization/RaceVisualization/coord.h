@@ -3,6 +3,7 @@
 struct Coord {
 	int x;
 	int y;
+
 };
 
 // координаты в окне

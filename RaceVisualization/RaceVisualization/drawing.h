@@ -8,6 +8,7 @@ class Drawing
 {
 public:
 	Drawing( std::vector<std::vector<int>> map_data, std::vector<Car> _cars );
+	Drawing() {};
 	void draw( int argc, char * argv[] );
 
 private:
