@@ -2,7 +2,7 @@
 
 void Map::Draw()
 {
-	/*int n = map.size(), m = map[0].size();
+	int n = map.size(), m = map[0].size();
 	float height = glutGet( GLUT_WINDOW_HEIGHT ),
 		width = glutGet( GLUT_WINDOW_WIDTH );
 	float squareLength = fmin( height / n, width / m ); // the length of one little square - "cell"
@@ -18,5 +18,5 @@ void Map::Draw()
 			glRectf( (j + 1) * squareLength + xIndent, (i + 1) * squareLength + yIndent,
 				j *squareLength + xIndent, i * squareLength + yIndent ); // draw square
 		}
-	}*/
+	}
 }

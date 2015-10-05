@@ -1,5 +1,6 @@
 #include "parameters.h"
 
+// TODO
 int Parameters::get_screen_width() { return 0; }
 int  Parameters::get_screen_height() { return 0; }
 int  Parameters::get_cell_size() { return 0; }

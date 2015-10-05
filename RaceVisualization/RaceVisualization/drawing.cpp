@@ -3,7 +3,7 @@
 Map Drawing::map; // static data members must be explicitly defined in exactly one compilation unit
 std::vector<Car> Drawing::cars;
 
-Drawing::Drawing( std::vector<std::vector<int>> map_data, std::vector<Car> _cars )
+Drawing::Drawing( std::vector<std::vector<int>> &map_data, std::vector<Car> &_cars )
 {
 	map = Map( map_data );
 	cars = _cars;

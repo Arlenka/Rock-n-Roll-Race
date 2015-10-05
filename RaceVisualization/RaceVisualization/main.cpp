@@ -2,6 +2,5 @@
 
 int main(int argc, char * argv[])
 {
-	Visualisation v("input.txt");
-	
+	Visualisation v("input.txt");	
 }

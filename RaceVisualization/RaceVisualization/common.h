@@ -12,7 +12,7 @@ const int DEFAULT_WINDOW_WIDTH = 500;
 const int DEFAULT_WINDOW_HEIGHT = 500;
 const int DEFAULT_STEPS_PER_CELL = 20;
 
-
+// TODO: Всемогутер. Рефакторинг!
 class Visualisation
 {
 public:
@@ -34,7 +34,7 @@ private:
 	int cell_size;
 	int steps_number_per_cell;
 
-	std::vector<std::vector<int>> read_map(std::ifstream & input);
-	void read_cars(std::ifstream & input);
+	std::vector<std::vector<int>> read_map( std::ifstream & input );
+	void read_cars( std::ifstream & input );
 
 };
