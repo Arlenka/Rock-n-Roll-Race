@@ -8,6 +8,34 @@ Car::Car( std::vector<Coord> &coords_data, int _frames_per_step, TColor _color )
 
 }
 
+void Car::Draw( float cell_size, WCoord indent )
+{
+	glEnable( GL_TEXTURE_2D );
+	glBindTexture( GL_TEXTURE_2D, texture );
+	glTexEnvf( GL_TEXTURE_2D, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+	WCoord cord = move( cell_size, indent );
+	float left = cord.x;
+	float right = cord.x + cell_size;
+	float bottom = cord.y + cell_size / 2;
+	float top = cord.y;
+	glDepthMask( GL_FALSE );
+	glEnable( GL_BLEND );
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	glLoadIdentity();
+	glPushMatrix();
+//	glRotatef( 10.0f, 0.0f, 0.0f, 1.0f ); //rotation of car ?? rotate coordinates, need help
+	glBegin( GL_POLYGON );
+	
+	glTexCoord2f( 0.0f, 0.0f ); glVertex3f( left, bottom, 0.0f );
+	glTexCoord2f( 1.0f, 0.0f ); glVertex3f( right, bottom, 0.0f );
+	glTexCoord2f( 1.0f, 1.0f ); glVertex3f( right, top, 0.0f );
+	glTexCoord2f( 0.0f, 1.0f ); glVertex3f( left, top, 0.0f );
+
+	glEnd();
+	glPopMatrix();
+	glDisable( GL_BLEND );
+	glDepthMask( GL_TRUE );
+}
 
 WCoord Car::move( float cell_size, WCoord indent )
 {

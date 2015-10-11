@@ -19,6 +19,8 @@ public:
 		return color;
 	}
 
+	void Draw( float cell_size, WCoord indent );
+
 	GLuint texture;
 private:
 	std::vector<Coord> coords;

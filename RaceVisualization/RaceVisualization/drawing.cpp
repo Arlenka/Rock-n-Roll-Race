@@ -29,37 +29,34 @@ void Drawing::Timer( int value )
 	glutTimerFunc( 1, Timer, 0 );
 }
 
+
+
 void Drawing::display()
 {
 	glClearColor( 1.0, 1.0, 1.0, 0.0 ); // clear background to white
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
+	//glColor3f( 1.0, 0.0, 0.0 );
+	//glTranslatef( -150, -150, 0 );
+	//glRotatef( 1.0, 0, 0, 1.0 );
+	//glTranslatef( 150, 150, 0 );
+	//glBegin( GL_POLYGON );
+
+	//glVertex3f( 100, 100, 0.0f );
+	//glVertex3f( 200, 100, 0.0f );
+	//glVertex3f( 200, 200, 0.0f );
+	//glVertex3f( 100, 200, 0.0f );
+
+	//glEnd();
+
+
 	map.Draw(); // draw the map
 	float cell_size = map.Get_cell_size();
 	for( size_t i = 0; i < cars.size(); i++ ) {
-		//draw car
-		glEnable( GL_TEXTURE_2D );
-		glBindTexture( GL_TEXTURE_2D, cars[i].texture );
-		glTexEnvf( GL_TEXTURE_2D, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-		WCoord cord = cars[i].move( map.Get_cell_size(), map.Get_indent() );
-		float left = cord.x;
-		float right = cord.x + cell_size;
-		float bottom = cord.y + cell_size / 2;
-		float top = cord.y;
-		glDepthMask( GL_FALSE );
-		glEnable( GL_BLEND );
-		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-		glBegin( GL_POLYGON );
-
-		glTexCoord2f( 0.0f, 0.0f ); glVertex3f( left, bottom, 0.0f );	
-		glTexCoord2f( 1.0f, 0.0f ); glVertex3f( right, bottom, 0.0f );	
-		glTexCoord2f( 1.0f, 1.0f ); glVertex3f( right, top, 0.0f );	
-		glTexCoord2f( 0.0f, 1.0f ); glVertex3f( left, top, 0.0f );	
-
-		glEnd();
-		glDisable( GL_BLEND );
-		glDepthMask( GL_TRUE );
+		cars[i].Draw( map.Get_cell_size(), map.Get_indent() );
 	}
+	glFlush();
+	
 	glutSwapBuffers();
 }
 
