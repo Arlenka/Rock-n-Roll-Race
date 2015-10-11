@@ -31,7 +31,11 @@ void test( int argc, char* argv[] )
 	for( int i = 0; i < n; i++ ) {
 		data[i].resize( m );
 		for( int j = 0; j < m; j++ ) {
-			data[i][j] = ( i + j ) % 3 % 2;
+			if( i == 0 || j == 0 || i == n - 1 || j == m - 1 ) {
+				data[i][j] = 1;
+			} else {
+				data[i][j] = 0;
+			}
 		}
 	}
 	Drawing drawing( data, cars );
