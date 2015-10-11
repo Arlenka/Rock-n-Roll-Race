@@ -23,7 +23,7 @@ void Car::Draw( float cell_size, WCoord indent )
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 	glLoadIdentity();
 	glPushMatrix();
-//	glRotatef( 10.0f, 0.0f, 0.0f, 1.0f ); //rotation of car ?? rotate coordinates, need help
+//	glRotatef( 10.0f, 0.0f, 0.0f, 1.0f ); //rotation of car ?? rotate coordinates, need
 	glBegin( GL_POLYGON );
 	
 	glTexCoord2f( 0.0f, 0.0f ); glVertex3f( left, bottom, 0.0f );
