@@ -1,9 +1,9 @@
-﻿#include "common.h"
+#include "common.h"
 
 void test( int argc, char* argv[] )
 {
-	int n = 50,
-		m = 50;
+	int n = 10,
+		m = 10;
 	std::vector<Coord> car_data;
 	car_data.resize( n );
 	for( int i = 0; i < n; i++ ) {
@@ -20,8 +20,8 @@ void test( int argc, char* argv[] )
 		car_data[i].y = i * 2;
 	}
 	for( int i = n / 2; i < n; i++ ) {
-		car_data[i].x = 2*(n - i);
-		car_data[i].y = 2*(n - i);
+		car_data[i].x = 2 * (n - i);
+		car_data[i].y = 2 * (n - i);
 	}
 	Car mycar2( car_data, 60, Blue );
 	cars.push_back( mycar2 );
@@ -42,8 +42,8 @@ void test( int argc, char* argv[] )
 	drawing.draw( argc, argv );
 }
 
-int main(int argc, char * argv[])
+int main( int argc, char * argv[] )
 {
 	test( argc, argv );
-	Visualisation v("input.txt");	
+	Visualisation v( "input.txt" );
 }

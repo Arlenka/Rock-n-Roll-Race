@@ -88,13 +88,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\freeglut\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\freeglut\include\GL;\Study\PromProg\Rock-n-Roll-Race\Simple OpenGL Image Library\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\freeglut\lib;\Study\PromProg\Rock-n-Roll-Race\Simple OpenGL Image Library\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <AdditionalDependencies>SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -160,6 +161,10 @@
     <ClInclude Include="drawing.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="map.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\images\forest.jpg" />
+    <Image Include="..\images\road.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
