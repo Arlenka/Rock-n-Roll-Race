@@ -2,6 +2,7 @@
 #include <vector>
 #include <glut.h>
 #include "coord.h"
+#include "SOIL.h"
 
 class Map
 {
@@ -18,6 +19,9 @@ public:
 	float Get_cell_size();
 	WCoord Get_indent();
 	//	OpenGLObject get_map();
+
+	GLuint texture_board;
+	GLuint texture_road;
 
 private:
 	std::vector<std::vector<int>> map; // TODO может тут хранить не в виде 2мерного массива?

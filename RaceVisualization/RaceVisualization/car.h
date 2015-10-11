@@ -1,6 +1,6 @@
 ﻿#pragma once 
 #include "coord.h"
-
+#include "glut.h"
 enum TColor { Red, Blue, Green };
 
 class Car
@@ -19,6 +19,7 @@ public:
 		return color;
 	}
 
+	GLuint texture;
 private:
 	std::vector<Coord> coords;
 	int current_step;
