@@ -1,6 +1,6 @@
 ﻿#pragma once 
 #include "coord.h"
-
+#include "glut.h"
 enum TColor { Red, Blue, Green };
 
 class Car
@@ -19,6 +19,9 @@ public:
 		return color;
 	}
 
+	void Draw( float cell_size, WCoord indent );
+
+	GLuint texture;
 private:
 	std::vector<Coord> coords;
 	int current_step;
