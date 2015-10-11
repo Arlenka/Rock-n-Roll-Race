@@ -1,4 +1,4 @@
-﻿#include "common.h"
+#include "common.h"
 
 void test( int argc, char* argv[] )
 {
@@ -20,8 +20,8 @@ void test( int argc, char* argv[] )
 		car_data[i].y = i * 2;
 	}
 	for( int i = n / 2; i < n; i++ ) {
-		car_data[i].x = 2*(n - i);
-		car_data[i].y = 2*(n - i);
+		car_data[i].x = 2 * (n - i);
+		car_data[i].y = 2 * (n - i);
 	}
 	Car mycar2( car_data, 60, Blue );
 	cars.push_back( mycar2 );
@@ -31,15 +31,19 @@ void test( int argc, char* argv[] )
 	for( int i = 0; i < n; i++ ) {
 		data[i].resize( m );
 		for( int j = 0; j < m; j++ ) {
-			data[i][j] = ( i + j ) % 3 % 2;
+			if( i == 0 || j == 0 || i == n - 1 || j == m - 1 ) {
+				data[i][j] = 1;
+			} else {
+				data[i][j] = 0;
+			}
 		}
 	}
 	Drawing drawing( data, cars );
 	drawing.draw( argc, argv );
 }
 
-int main(int argc, char * argv[])
+int main( int argc, char * argv[] )
 {
 	test( argc, argv );
-	Visualisation v("input.txt");	
+	Visualisation v( "input.txt" );
 }
