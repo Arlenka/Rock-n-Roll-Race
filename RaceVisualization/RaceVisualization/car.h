@@ -3,6 +3,7 @@
 #include "glut.h"
 enum TColor { Red, Blue, Green };
 
+
 class Car
 {
 public:
@@ -12,13 +13,24 @@ public:
 		coords = coords_data;
 		color = Red;
 	}
+	Car(TColor _color)
+	{
+		color = _color;
+		frames_per_step = 60;
+		current_step = 0;
+		step_iteration = 0;
+
+	}
 
 	WCoord move( float cell_size, WCoord indent );
 	TColor get_color()
 	{
 		return color;
 	}
-
+	void push(Coord step)
+	{
+		coords.push_back(step);
+	}
 	GLuint texture;
 private:
 	std::vector<Coord> coords;

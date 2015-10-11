@@ -4,9 +4,9 @@ Map Drawing::map; // static data members must be explicitly defined in exactly o
 std::vector<Car> Drawing::cars;
 GLuint texture;
 
-Drawing::Drawing( std::vector<std::vector<int>> &map_data, std::vector<Car> &_cars )
+Drawing::Drawing( Map &map_data, std::vector<Car> &_cars )
 {
-	map = Map( map_data );
+	map = map_data;
 	cars = _cars;
 }
 
@@ -28,6 +28,8 @@ void Drawing::Timer( int value )
 	glutPostRedisplay();
 	glutTimerFunc( 1, Timer, 0 );
 }
+
+
 
 void Drawing::display()
 {
@@ -60,8 +62,13 @@ void Drawing::display()
 		glDisable( GL_BLEND );
 		glDepthMask( GL_TRUE );
 	}
+	glFlush();
+	
 	glutSwapBuffers();
 }
+
+
+
 
 void Drawing::LoadTexture( const char* filename, GLuint& texture )
 {
@@ -84,10 +91,10 @@ void Drawing::draw( int argc, char * argv[] )
 	glutInitWindowSize( 800, 600 );
 	glutCreateWindow( "Rock'n'Roll Race" );
 	//load textures for cars and map
-	LoadTexture( "C:\\Study\\PromProg\\Rock-n-Roll-Race\\RaceVisualization\\images\\road.png", map.texture_road );
-	LoadTexture( "C:\\Study\\PromProg\\Rock-n-Roll-Race\\RaceVisualization\\images\\forest.png", map.texture_board );
+	LoadTexture( "D:\\Rock-n-Roll-Race\\RaceVisualization\\images\\road.png", map.texture_road );
+	LoadTexture( "D:\\Rock-n-Roll-Race\\RaceVisualization\\images\\forest.png", map.texture_board );
 	for( size_t i = 0; i < cars.size(); i++ ) {
-		LoadTexture( "C:\\Study\\PromProg\\Rock-n-Roll-Race\\RaceVisualization\\images\\car_1.png", cars[i].texture );
+		LoadTexture( "D:\\Rock-n-Roll-Race\\RaceVisualization\\images\\car_1.png", cars[i].texture );
 	}
 	glutTimerFunc( 1, Timer, 0 );
 	glutReshapeFunc( reshape );

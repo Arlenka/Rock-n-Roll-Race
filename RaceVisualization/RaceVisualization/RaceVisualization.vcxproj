@@ -88,12 +88,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\freeglut\include\GL;\Study\PromProg\Rock-n-Roll-Race\Simple OpenGL Image Library\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\freeglut\include\GL;D:\Rock-n-Roll-Race\Simple OpenGL Image Library\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\freeglut\lib;\Study\PromProg\Rock-n-Roll-Race\Simple OpenGL Image Library\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\freeglut\lib;D:\Rock-n-Roll-Race\Simple OpenGL Image Library\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
       <AdditionalDependencies>SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -147,7 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="car.cpp" />
-    <ClCompile Include="common.cpp" />
+    <ClCompile Include="loader.cpp" />
     <ClCompile Include="drawing.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
@@ -159,7 +159,7 @@
     <ClInclude Include="car.h" />
     <ClInclude Include="coord.h" />
     <ClInclude Include="drawing.h" />
-    <ClInclude Include="common.h" />
+    <ClInclude Include="loader.h" />
     <ClInclude Include="map.h" />
   </ItemGroup>
   <ItemGroup>

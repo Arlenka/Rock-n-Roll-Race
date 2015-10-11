@@ -1,7 +1,7 @@
 ﻿#include <vector>
 #include "car.h"
 
-Car::Car( std::vector<Coord> &coords_data, int _frames_per_step, TColor _color )
+Car::Car( std::vector<Coord> &coords_data, int _frames_per_step, TColor _color = Red)
 	: coords( coords_data ), current_step( 0 ), step_iteration( 0 ),
 	color( _color ), frames_per_step( _frames_per_step )
 {

@@ -1,6 +1,6 @@
-#include "common.h"
+#include "loader.h"
 
-void test( int argc, char* argv[] )
+/*void test( int argc, char* argv[] )
 {
 	int n = 10,
 		m = 10;
@@ -40,10 +40,10 @@ void test( int argc, char* argv[] )
 	}
 	Drawing drawing( data, cars );
 	drawing.draw( argc, argv );
-}
+}*/
 
 int main( int argc, char * argv[] )
 {
-	test( argc, argv );
-	Visualisation v( "input.txt" );
+	//test( argc, argv );
+	Loader loader( "map_file.txt", "cars_file.txt", argc, argv );
 }
