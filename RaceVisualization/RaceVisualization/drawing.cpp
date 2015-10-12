@@ -30,7 +30,40 @@ void Drawing::Timer( int value )
 }
 
 
+void rotate(float &x, float &y, float angle)
+{
+	float tx = x,
+		ty = y;
+	x = tx * cos(angle) - ty * sin(angle);
+	y = tx * sin(angle) + ty * cos(angle);
+}
+void rotateCar(float &Ax, float &Ay, float &Bx, float &By, float &Cx, float &Cy, float &Dx, float &Dy, float centerX, float centerY, float angle)
+{
+	Ax -= centerX;
+	Bx -= centerX;
+	Cx -= centerX;
+	Dx -= centerX;
 
+	Ay -= centerY;
+	By -= centerY;
+	Cy -= centerY;
+	Dy -= centerY;
+
+	rotate(Ax, Ay, angle);
+	rotate(Bx, By, angle);
+	rotate(Cx, Cy, angle);
+	rotate(Dx, Dy, angle);
+
+	Ax += centerX;
+	Bx += centerX;
+	Cx += centerX;
+	Dx += centerX;
+
+	Ay += centerY;
+	By += centerY;
+	Cy += centerY;
+	Dy += centerY;
+}
 void Drawing::display()
 {
 	glClearColor( 1.0, 1.0, 1.0, 0.0 ); // clear background to white
@@ -43,7 +76,8 @@ void Drawing::display()
 		glEnable( GL_TEXTURE_2D );
 		glBindTexture( GL_TEXTURE_2D, cars[i].texture );
 		glTexEnvf( GL_TEXTURE_2D, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-		WCoord cord = cars[i].move( map.Get_cell_size(), map.Get_indent() );
+		float angle = 0.0;
+		WCoord cord = cars[i].move( map.Get_cell_size(), map.Get_indent(), angle );
 		float left = cord.x;
 		float right = cord.x + cell_size;
 		float bottom = cord.y + cell_size / 2;
@@ -52,11 +86,26 @@ void Drawing::display()
 		glEnable( GL_BLEND );
 		glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 		glBegin( GL_POLYGON );
-
-		glTexCoord2f( 0.0f, 0.0f ); glVertex3f( left, bottom, 0.0f );	
-		glTexCoord2f( 1.0f, 0.0f ); glVertex3f( right, bottom, 0.0f );	
-		glTexCoord2f( 1.0f, 1.0f ); glVertex3f( right, top, 0.0f );	
-		glTexCoord2f( 0.0f, 1.0f ); glVertex3f( left, top, 0.0f );	
+		float Ax = left,
+			Ay = bottom,
+			Bx = right,
+			By = bottom,
+			Cx = right,
+			Cy = top,
+			Dx = left,
+			Dy = top;
+	
+		float centerX = Dx - (Dx - Bx) / 2,
+			centerY = Dy - (Dy - By) / 2;
+		rotateCar(Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, centerX, centerY, angle);
+		glTexCoord2f( 0.0f, 0.0f ); glVertex3f( Ax, Ay, 0.0f );	
+		glTexCoord2f( 1.0f, 0.0f ); glVertex3f( Bx, By, 0.0f );	
+		glTexCoord2f( 1.0f, 1.0f ); glVertex3f( Cx, Cy, 0.0f );	
+		glTexCoord2f( 0.0f, 1.0f ); glVertex3f( Dx, Dy, 0.0f );	
+		//glTexCoord2f(0.0f, 0.0f); glVertex3f(left, bottom, 0.0f);
+		//glTexCoord2f(1.0f, 0.0f); glVertex3f(right, bottom, 0.0f);
+		//glTexCoord2f(1.0f, 1.0f); glVertex3f(right, top, 0.0f);
+		//glTexCoord2f(0.0f, 1.0f); glVertex3f(left, top, 0.0f);
 
 		glEnd();
 		glDisable( GL_BLEND );

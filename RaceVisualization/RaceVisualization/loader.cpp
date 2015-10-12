@@ -34,7 +34,6 @@ Map Loader::read_map( std::ifstream & input )
 	Map map(map_data);
 	return map;
 }
-
 std::vector<Car> Loader::read_cars( std::ifstream & input )
 {
 	int n = 0,
@@ -51,7 +50,9 @@ std::vector<Car> Loader::read_cars( std::ifstream & input )
 			input >> step.x >> step.y;
 			car.push( step );
 		}
+		car.getAngles();
 		cars.push_back( car );
 	}
+	
 	return cars;
 }
