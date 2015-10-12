@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <Windows.h>
 #include <vector>
+#include <math.h>
 #include <glut.h>
 #include "map.h"
 #include "car.h"
@@ -9,7 +10,7 @@
 class Drawing
 {
 public:
-	Drawing( std::vector<std::vector<int>> &map_data, std::vector<Car> &_cars );
+	Drawing( Map &map_data, std::vector<Car> &_cars );
 	Drawing() {};
 	void draw( int argc, char * argv[] );
 	void LoadTexture( const char*, GLuint& texture );

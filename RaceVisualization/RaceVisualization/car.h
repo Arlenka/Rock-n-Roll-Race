@@ -3,6 +3,9 @@
 #include "glut.h"
 enum TColor { Red, Blue, Green };
 
+#define PI 3.14159265
+
+
 class Car
 {
 public:
@@ -12,14 +15,32 @@ public:
 		coords = coords_data;
 		color = Red;
 	}
+	Car(TColor _color)
+	{
+		color = _color;
+		frames_per_step = 180;
+		current_step = 0;
+		step_iteration = 0;
 
-	WCoord move( float cell_size, WCoord indent );
+	}
+
+	WCoord move( float cell_size, WCoord , float &angle);
 	TColor get_color()
 	{
 		return color;
 	}
 
+	void push(Coord step)
+	{
+		coords.push_back(step);
+	}
+	void getAngles();
+
 	void Draw( float cell_size, WCoord indent );
+
+	void rotate( float &x, float &y, float angle );
+
+	void rotateCar( float &Ax, float &Ay, float &Bx, float &By, float &Cx, float &Cy, float &Dx, float &Dy, float centerX, float centerY, float angle );
 
 	GLuint texture;
 private:
@@ -28,5 +49,6 @@ private:
 	int step_iteration;
 	int frames_per_step;
 	TColor color;
-	WCoord transate_to_wcoord( float x, float y, float cell_size, WCoord indent );
+	WCoord transate_to_wcoord( float x, float y, float cell_size, WCoord indent);
+	
 };
