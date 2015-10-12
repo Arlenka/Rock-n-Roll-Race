@@ -76,11 +76,6 @@ void Car::Draw( float cell_size, WCoord indent )
 	glTexCoord2f( 1.0f, 0.0f ); glVertex3f( Bx, By, 0.0f );
 	glTexCoord2f( 1.0f, 1.0f ); glVertex3f( Cx, Cy, 0.0f );
 	glTexCoord2f( 0.0f, 1.0f ); glVertex3f( Dx, Dy, 0.0f );
-	//glTexCoord2f(0.0f, 0.0f); glVertex3f(left, bottom, 0.0f);
-	//glTexCoord2f(1.0f, 0.0f); glVertex3f(right, bottom, 0.0f);
-	//glTexCoord2f(1.0f, 1.0f); glVertex3f(right, top, 0.0f);
-	//glTexCoord2f(0.0f, 1.0f); glVertex3f(left, top, 0.0f);
-
 	glEnd();
 	glDisable( GL_BLEND );
 	glDepthMask( GL_TRUE );
@@ -116,7 +111,10 @@ WCoord Car::move( float cell_size, WCoord indent, float &angle )
 float findAngle(int x, int y)
 {
 	float angle = 0.0;
-	angle = (float)x / sqrt(x * x + y * y);
+	int length = x * x + y * y;
+	if( length != 0 ) {
+		angle = ( float )x / sqrt( length );
+	}
 	return acos(angle);
 }
 
@@ -127,6 +125,8 @@ void Car::getAngles() {
 			coords[i - 1].helpAngle = PI;
 		}
 	}
+	coords[coords.size() - 1].angle = coords[coords.size() - 2].angle;
+	coords[coords.size() - 1].helpAngle = coords[coords.size() - 2].helpAngle;
 }
 
 // TODO добавить умножение на коэфициент сжатия чтобы соответствовать 2.5D
