@@ -8,7 +8,7 @@ void Map::Calculate()
 	cell_size = fmin( height / n, width / m ); // the length of one little square - "cell"
 	indent.x = (width - cell_size * m) / 2; // indent from left and right window sides
 	indent.y = (height - cell_size * n) / 2;  // indent from top and bottom window sides
-	need_reload = true;
+	need_reload = true; // need to reload map
 }
 
 void Map::SaveTexture()
