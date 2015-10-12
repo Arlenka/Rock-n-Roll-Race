@@ -11,27 +11,27 @@ void Map::Calculate()
 	need_reload = true; // need to reload map
 }
 
-void Map::SaveTexture()
+void Map::save_texture()
 {
+	// write window to array of pixels
 	unsigned long imageSize;
 	GLint viewPort[4];
 	glGetIntegerv( GL_VIEWPORT, viewPort );
 	GLint width = viewPort[2];
 	GLint height = viewPort[3];
-
 	imageSize = ((width + ((4 - (width % 4)) % 4))*height * 3);
 	std::shared_ptr<GLbyte> data = std::shared_ptr<GLbyte>( new GLbyte[imageSize] );
 	glReadBuffer( GL_FRONT );
-	glReadPixels( 0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, data.get() );
-	glGenTextures( 1, &texture_map );
-	glBindTexture( GL_TEXTURE_2D, texture_map );
+	glReadPixels( 0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, data.get() ); 
 
-	gluBuild2DMipmaps( GL_TEXTURE_2D, 3, width, height, GL_RGB, GL_UNSIGNED_BYTE, data.get() );
+	// write pixels to texture of map
+	glBindTexture( GL_TEXTURE_2D, texture_map );
+	gluBuild2DMipmaps( GL_TEXTURE_2D, 3, width, height, GL_RGB, GL_UNSIGNED_BYTE, data.get() ); 
 	glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,
 		( float )GL_MODULATE );
 }
 
-void Map::ReloadTexture()
+void Map::reload()
 {
 	int n = map.size(), m = map[0].size();
 	for( int i = 0; i < n; i++ ) {
@@ -47,7 +47,7 @@ void Map::ReloadTexture()
 			float right = (j + 1) * cell_size + indent.x;
 			float bottom = i * cell_size + indent.y;
 			float top = (i + 1) * cell_size + indent.y;
-			//draw a cell with texture
+			//draw a cell with texture (board or road)
 			glBegin( GL_POLYGON );
 			glTexCoord2f( 0.0f, 0.0f ); glVertex3f( left, bottom, 0.0f );
 			glTexCoord2f( 1.0f, 0.0f ); glVertex3f( right, bottom, 0.0f );
@@ -57,21 +57,23 @@ void Map::ReloadTexture()
 		}
 	}
 	glutSwapBuffers();
-	SaveTexture(); // save all window with map to texture
+	save_texture(); // save the whole window with map to texture
 	need_reload = false;
 }
 
 void Map::Draw()
 {
 	if( need_reload ) {
-		ReloadTexture();
+		reload();
 		return;
 	}
 	// load window from texture
 	glEnable( GL_TEXTURE_2D );
 	int height = glutGet( GLUT_WINDOW_HEIGHT ),
 		width = glutGet( GLUT_WINDOW_WIDTH );
+	// choose texture
 	glBindTexture( GL_TEXTURE_2D, texture_map );
+	// draw a polygon of window size with texture
 	glBegin( GL_POLYGON );
 	glTexCoord2f( 0.0f, 0.0f ); glVertex3f( 0, 0, 0.0f );
 	glTexCoord2f( 1.0f, 0.0f ); glVertex3f( width, 0, 0.0f );

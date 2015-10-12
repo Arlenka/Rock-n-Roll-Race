@@ -15,13 +15,11 @@ const int DEFAULT_STEPS_PER_CELL = 20;
 class Loader
 {
 public:
-	Loader(std::string map_file, std::string cars_file, int argc, char* argv[]); // конструктор с указанным входным файлом
-	// ~Visualization();	
+	Loader( std::string map_file, std::string cars_file, int argc, char* argv[] ); // конструктор с указанным входным файлом
 private:
-	Drawing drawing_module;
-	
-	Map read_map(std::ifstream & input);
-	std::vector<Car> read_cars(std::ifstream & input);
+	Map read_map( std::ifstream & input );
+	std::vector<Car> read_cars( std::ifstream & input );
 
-	std::map< std::string, TColor > colorMap;
+	Drawing drawing_module;
+	std::map< std::string, TColor > color_dict;
 };

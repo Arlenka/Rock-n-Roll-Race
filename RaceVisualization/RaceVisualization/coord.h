@@ -1,17 +1,18 @@
 ﻿#pragma once
 // координаты в игре
-struct Coord {
+struct Coord
+{
 	int x;
 	int y;
 	float angle;
-	float helpAngle = 0.0;
-
+	float help_angle = 0.0;
 };
 
 // координаты в окне
-struct WCoord {
+struct WCoord
+{
 	float x;
 	float y;
-	WCoord( float _x, float _y ): x(_x), y(_y) {}
+	WCoord( float _x, float _y ) : x( _x ), y( _y ) {}
 	WCoord() {}
 };
