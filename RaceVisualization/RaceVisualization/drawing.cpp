@@ -37,16 +37,17 @@ void Drawing::display()
 
 	bool flag = !map.Need_to_reload();
 	map.Draw(); // draw the map
-	float cell_size = map.Get_cell_size();
+	float cell_size = map.Get_cell_size(); // calculate the size of cell
 	for( size_t i = 0; i < cars.size(); i++ ) {
-		cars[i].Draw( map.Get_cell_size(), map.Get_indent() );
+		cars[i].Draw( map.Get_cell_size(), map.Get_indent() ); // draw car
 	}
-	glFlush();
+	glFlush(); // flush changes
 	if( flag ) {
-		glutSwapBuffers();
+		glutSwapBuffers(); // if map wasn't reloaded (and buffers weren't swapped), swap buffers
 	}
 }
 
+// load image from filen to texture
 void Drawing::LoadTexture( const char* filename, GLuint& texture )
 {
 	glGenTextures( 1, &texture );
@@ -61,6 +62,7 @@ void Drawing::LoadTexture( const char* filename, GLuint& texture )
 	glBindTexture( GL_TEXTURE_2D, 0 );
 }
 
+
 void Drawing::draw( int argc, char * argv[] )
 {
 	glutInit( &argc, argv );
@@ -68,10 +70,24 @@ void Drawing::draw( int argc, char * argv[] )
 	glutInitWindowSize( 800, 600 );
 	glutCreateWindow( "Rock'n'Roll Race" );
 	//load textures for cars and map
-	LoadTexture( "D:\\Rock-n-Roll-Race\\RaceVisualization\\images\\road.png", map.texture_road );
-	LoadTexture( "D:\\Rock-n-Roll-Race\\RaceVisualization\\images\\forest.png", map.texture_board );
+	LoadTexture( "..\\images\\road.png", map.texture_road );
+	LoadTexture( "..\\images\\forest.png", map.texture_board );
+	std::string car_filename;
 	for( size_t i = 0; i < cars.size(); i++ ) {
-		LoadTexture( "D:\\Rock-n-Roll-Race\\RaceVisualization\\images\\car_1.png", cars[i].texture );
+		switch( cars[i].get_color() ) {
+			case Red: 
+				car_filename = "..\\images\\car_red.png";
+				break;
+			case Blue:
+				car_filename = "..\\images\\car_blue.png";
+				break;
+			case Green:
+				car_filename = "..\\images\\car_green.png";
+				break;
+			default:
+				car_filename = "..\\images\\car_red.png";
+		}
+		LoadTexture( car_filename.c_str(), cars[i].texture );
 	}
 	glutTimerFunc( 1, Timer, 0 );
 	glutReshapeFunc( reshape );

@@ -24,7 +24,6 @@ public:
 	void Draw();
 	float Get_cell_size();
 	WCoord Get_indent();
-	//	OpenGLObject get_map();
 
 	void SaveTexture();
 	void ReloadTexture();
