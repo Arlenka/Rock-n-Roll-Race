@@ -13,12 +13,13 @@ public:
 	Drawing( Map &map_data, std::vector<Car> &_cars );
 	Drawing() {};
 	void draw( int argc, char * argv[] );
-	void LoadTexture( const char*, GLuint& texture );
+	static void Load_texture( const char*, GLuint& texture );
 
 private:
 	static void display();
 	static void reshape( int width, int height );
+	static void load();
+	static void timer( int value );
 	static Map map;
 	static std::vector<Car> cars;
-	static void Timer( int value );
 };
