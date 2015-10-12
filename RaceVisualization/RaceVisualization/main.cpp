@@ -2,8 +2,8 @@
 
 /*void test( int argc, char* argv[] )
 {
-	int n = 10,
-		m = 10;
+	int n = 50,
+		m = 50;
 	std::vector<Coord> car_data;
 	car_data.resize( n );
 	for( int i = 0; i < n; i++ ) {

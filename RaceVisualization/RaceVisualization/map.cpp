@@ -8,39 +8,77 @@ void Map::Calculate()
 	cell_size = fmin( height / n, width / m ); // the length of one little square - "cell"
 	indent.x = (width - cell_size * m) / 2; // indent from left and right window sides
 	indent.y = (height - cell_size * n) / 2;  // indent from top and bottom window sides
+	need_reload = true;
 }
 
-void Map::Draw()
+void Map::SaveTexture()
+{
+	unsigned long imageSize;
+	GLint viewPort[4];
+	glGetIntegerv( GL_VIEWPORT, viewPort );
+	GLint width = viewPort[2];
+	GLint height = viewPort[3];
+
+	imageSize = ((width + ((4 - (width % 4)) % 4))*height * 3);
+	std::shared_ptr<GLbyte> data = std::shared_ptr<GLbyte>( new GLbyte[imageSize] );
+	glReadBuffer( GL_FRONT );
+	glReadPixels( 0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, data.get() );
+	glGenTextures( 1, &texture_map );
+	glBindTexture( GL_TEXTURE_2D, texture_map );
+
+	gluBuild2DMipmaps( GL_TEXTURE_2D, 3, width, height, GL_RGB, GL_UNSIGNED_BYTE, data.get() );
+	glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,
+		( float )GL_MODULATE );
+}
+
+void Map::ReloadTexture()
 {
 	int n = map.size(), m = map[0].size();
 	for( int i = 0; i < n; i++ ) {
 		for( int j = 0; j < m; j++ ) {
 			glEnable( GL_TEXTURE_2D );
 			if( map[i][j] == 1 ) {
-				glBindTexture( GL_TEXTURE_2D, texture_board );
-//				glColor3f( 0.0, 0.0, 0.0 ); // choose color for black "board" squares
+				glBindTexture( GL_TEXTURE_2D, texture_board ); // load a texture of board (forest)
 			} else {
-				glBindTexture( GL_TEXTURE_2D, texture_road );
-//				glColor3f( 0.7, 0.7, 0.7 ); // choose color for grey "road" squares
+				glBindTexture( GL_TEXTURE_2D, texture_road ); // load a texture of road
 			}
+			//calculate coordinates
 			float left = j * cell_size + indent.x;
 			float right = (j + 1) * cell_size + indent.x;
 			float bottom = i * cell_size + indent.y;
 			float top = (i + 1) * cell_size + indent.y;
+			//draw a cell with texture
 			glBegin( GL_POLYGON );
-
-			// Передняя грань
-			glTexCoord2f( 0.0f, 0.0f ); glVertex3f( left, bottom, 0.0f );	// Низ лево
-			glTexCoord2f( 1.0f, 0.0f ); glVertex3f( right, bottom, 0.0f );	// Низ право
-			glTexCoord2f( 1.0f, 1.0f ); glVertex3f( right, top, 0.0f );	// Верх право
-			glTexCoord2f( 0.0f, 1.0f ); glVertex3f( left, top, 0.0f );	// Верх лево
-
+			glTexCoord2f( 0.0f, 0.0f ); glVertex3f( left, bottom, 0.0f );
+			glTexCoord2f( 1.0f, 0.0f ); glVertex3f( right, bottom, 0.0f );
+			glTexCoord2f( 1.0f, 1.0f ); glVertex3f( right, top, 0.0f );
+			glTexCoord2f( 0.0f, 1.0f ); glVertex3f( left, top, 0.0f );
 			glEnd();
-
-			//glRectf( (j + 1) * cell_size + indent.x, (i + 1) * cell_size + indent.y,
-			//	j *cell_size + indent.x, i * cell_size + indent.y ); // draw square
 		}
 	}
+	glutSwapBuffers();
+	SaveTexture(); // save all window with map to texture
+	need_reload = false;
+}
+
+void Map::Draw()
+{
+	if( need_reload ) {
+		ReloadTexture();
+		return;
+	}
+	// load window from texture
+	glEnable( GL_TEXTURE_2D );
+	int height = glutGet( GLUT_WINDOW_HEIGHT ),
+		width = glutGet( GLUT_WINDOW_WIDTH );
+	glBindTexture( GL_TEXTURE_2D, texture_map );
+	glBegin( GL_POLYGON );
+	glTexCoord2f( 0.0f, 0.0f ); glVertex3f( 0, 0, 0.0f );
+	glTexCoord2f( 1.0f, 0.0f ); glVertex3f( width, 0, 0.0f );
+	glTexCoord2f( 1.0f, 1.0f ); glVertex3f( width, height, 0.0f );
+	glTexCoord2f( 0.0f, 1.0f ); glVertex3f( 0, height, 0.0f );
+	glEnd();
+
 }
 
 float Map::Get_cell_size()

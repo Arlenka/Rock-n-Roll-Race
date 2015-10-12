@@ -7,8 +7,6 @@
 #include "car.h"
 /* OpenGL needs static functions and command line arguments for drawing*/
 
-
-
 class Drawing
 {
 public:
@@ -23,7 +21,4 @@ private:
 	static Map map;
 	static std::vector<Car> cars;
 	static void Timer( int value );
-	//void rotate(float &x, float &y);
-	//void Drawing::rotateCar(float &Ax, float &Ay, float &Bx, float &By, float &Cx, float &Cy, float &Dx, float &Dy);
-
 };

@@ -29,11 +29,19 @@ public:
 	{
 		return color;
 	}
+
 	void push(Coord step)
 	{
 		coords.push_back(step);
 	}
 	void getAngles();
+
+	void Draw( float cell_size, WCoord indent );
+
+	void rotate( float &x, float &y, float angle );
+
+	void rotateCar( float &Ax, float &Ay, float &Bx, float &By, float &Cx, float &Cy, float &Dx, float &Dy, float centerX, float centerY, float angle );
+
 	GLuint texture;
 private:
 	std::vector<Coord> coords;
